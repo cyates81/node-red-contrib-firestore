@@ -1,0 +1,47 @@
+<script type="text/javascript">
+	RED.nodes.registerType('firestore-update', {
+		category : 'input',
+		color : '#a6bbcf',
+		defaults : {
+			name : {
+				value : ""
+      },
+      key: {
+        value : ""
+      },
+			collection : {
+				value : ""
+			},
+			document : {
+				value : ""
+			}
+		},
+		inputs : 0,
+		outputs : 1,
+		icon : "serial.png",
+		label : "firestore-update"
+	});
+</script>
+
+<script type="text/x-red" data-template-name="firestore-update">
+ 	<div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+    <input type="text" id="node-input-name" placeholder="name" />
+  </div>
+  <div class="form-row">
+   <label for="node-input-key"><i class="icon-tag"></i>Service Account Key JSON File</label>
+   <input type="text" id="node-input-key" placeholder="file path" />
+ </div>
+  <div class="form-row">
+    <label for="node-input-collection"><i class="icon-tag"></i>Collection</label>
+    <input type="text" id="node-input-collection" placeholder="collection" />
+  </div>
+	<div class="form-row">
+    <label for="node-input-document"><i class="icon-tag"></i>Document</label>
+    <input type="text" id="node-input-document" placeholder="document" />
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="firestore-update">
+    <p><b>Google Firestore</b> document update listener</p>
+</script>
