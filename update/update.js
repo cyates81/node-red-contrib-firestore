@@ -5,36 +5,24 @@ module.exports = function(RED) {
 		RED.nodes.createNode(this, config);
 		var node = this;
 
-		this.status({
-			fill : "red",
-			shape : "ring",
-			text : "disconnected"
-		});
-
-		admin.initializeApp({
-      credential: admin.credential.cert(config.key)
-    });
+    if (!admin.apps.length) {
+      admin.initializeApp({
+        credential: admin.credential.cert(config.key)
+      });
+    }
     
     let db = admin.firestore();
-
     let doc = db.collection(config.collection).doc(config.document);
-
-    let observer = doc.onSnapshot(docSnapshot => {
-      node.send({
-				payload : docSnapshot
-			});
-    }, err => {
-      node.send({
-        error: err,
-        payload: null
-      });
+    
+    this.on('input', function(msg) {
+      /* 
+        There's some weird bug with Firestore where it returns 
+        Error: Argument "data" is not a valid Document. Input is not a plain JavaScript object.
+        Current fix is just to use Object.assign({}...
+      */
+      let data = Object.assign({}, msg.payload);  
+      doc.set(data, {merge: config.merge});
     });
-
-		this.status({
-			fill : "green",
-			shape : "dot",
-			text : "connected"
-		});
 	}
 	RED.nodes.registerType("firestore-update", FirestoreUpdateNode);
 }

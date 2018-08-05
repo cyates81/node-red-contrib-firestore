@@ -12,7 +12,8 @@
     ],
     "node-red": {
         "nodes": {
-            "firestore-update": "update/update.js"
+            "firestore-update": "update/update.js",
+            "firestore-listen": "listen/listen.js"
         }
     },
     "repository": {

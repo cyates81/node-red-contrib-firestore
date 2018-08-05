@@ -1,6 +1,6 @@
 <script type="text/javascript">
-	RED.nodes.registerType('firestore-update', {
-		category : 'output',
+	RED.nodes.registerType('firestore-listen', {
+		category : 'input',
 		color : '#a6bbcf',
 		defaults : {
 			name : {
@@ -14,19 +14,16 @@
 			},
 			document : {
 				value : ""
-      },
-      merge: {
-        value: false
-      }
+			}
 		},
-		inputs : 1,
-		outputs : 0,
+		inputs : 0,
+		outputs : 1,
 		icon : "serial.png",
-		label : "firestore-update"
+		label : "firestore-listen"
 	});
 </script>
 
-<script type="text/x-red" data-template-name="firestore-update">
+<script type="text/x-red" data-template-name="firestore-listen">
  	<div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i>Name</label>
     <input type="text" id="node-input-name" placeholder="name" />
@@ -43,12 +40,8 @@
     <label for="node-input-document"><i class="icon-tag"></i>Document</label>
     <input type="text" id="node-input-document" placeholder="document" />
   </div>
-	<div class="form-row">
-    <label for="node-input-merge"><i class="icon-tag"></i>Merge</label>
-    <input type="checkbox" id="node-input-merge" />
-  </div>
 </script>
 
-<script type="text/x-red" data-help-name="firestore-update">
-    <p><b>Google Firestore</b> document update</p>
+<script type="text/x-red" data-help-name="firestore-listen">
+    <p><b>Google Firestore</b> document listener</p>
 </script>
