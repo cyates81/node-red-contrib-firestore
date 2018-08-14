@@ -18,17 +18,14 @@ module.exports = function(RED) {
     }		
     
     let db = admin.firestore();
-
     let doc = db.collection(config.collection).doc(config.document);
 
     let observer = doc.onSnapshot(docSnapshot => {
-      if (this.status.text == "disconnected") {
-        this.status({
-          fill : "green",
-          shape : "dot",
-          text : "connected"
-        });
-      }
+      this.status({
+        fill : "green",
+        shape : "dot",
+        text : "connected"
+      });
       node.send({
 				payload : docSnapshot.data()
 			});
